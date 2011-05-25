@@ -137,6 +137,7 @@ silent! call pathogen#runtime_append_all_bundles()
     au BufRead,BufNewFile Thorfile set ft=ruby                                   
     au BufRead,BufNewFile *.god set ft=ruby  
     au BufRead,BufNewFile .caprc set ft=ruby  
+    au BufRead,BufNewFile *.scss set filetype=scss
   augroup END
 
 
