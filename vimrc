@@ -127,7 +127,7 @@ set guifont=Monaco:h11
     " autoindent with two spaces, always expand tabs
     autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
     autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 expandtab
-    autocmd FileType javascript,html,htmldjango,css,radius set autoindent shiftwidth=2 softtabstop=2 expandtab
+    autocmd FileType php,javascript,html,htmldjango,css,radius set autoindent shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     au BufRead,BufNewFile *etc/nginx/* set ft=nginx 
