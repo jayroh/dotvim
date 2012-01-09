@@ -1,2 +1,2 @@
 colorscheme vividchalk
-set guifont=Menlo:h15
+set guifont=Menlo\ Regular:h11

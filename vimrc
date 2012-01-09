@@ -2,6 +2,8 @@ runtime! autoload/pathogen.vim
 silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
 
+set guifont=Monaco:h11
+
 " Section: configuration
 
   map <F2> :NERDTreeToggle<CR>
