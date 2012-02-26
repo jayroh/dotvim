@@ -6,8 +6,6 @@ set guifont=Monaco:h11
 
 " Section: configuration
 
-  map <F2> :NERDTreeToggle<CR>
-
   scriptencoding utf-8
 
   " I like pretty colors
@@ -95,19 +93,25 @@ set guifont=Monaco:h11
   " set foldmethod=syntax
   " set foldlevel=999 " make it really high, so they're not displayed by default
   
+  set tags=./tags;
 
   " Turn off rails bits of statusbar
   let g:rails_statusline=0
 
   " quit NERDTree after openning a file
-"  let NERDTreeQuitOnOpen=1
+  let NERDTreeQuitOnOpen = 0
   " colored NERD Tree
   let NERDChristmasTree = 1
   let NERDTreeHighlightCursorline = 1
   let NERDTreeShowHidden = 1
   " map enter to activating a node
   let NERDTreeMapActivateNode='<CR>'
-  let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf']
+  let NERDTreeIgnore=['\.git','\.DS_Store','\.sass\-cache','\.pdf','\.bundle']
+  map <F2> :NERDTreeToggle<CR>
+  " Toggle NERDTree with <leader>d
+  map <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+
+
 
   " limit number of results shown for performance
   let g:fuzzy_matching_limit=60
@@ -231,9 +235,6 @@ set guifont=Monaco:h11
 
   " align hashrockets with <leader>t control-l
   vmap <leader>t<C-l> :Align =><CR>
-
-  " Toggle NERDTree with <leader>d
-  map <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
   " TextMate fuzzy finder with <leader>t
   map <silent> <leader>t :FuzzyFinderTextMate<CR>
