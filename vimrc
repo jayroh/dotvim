@@ -4,6 +4,15 @@ silent! call pathogen#helptags()
 
 set guifont=Monaco:h11
 
+noremap  <Up> ""
+noremap! <Up> <Esc>
+noremap  <Down> ""
+noremap! <Down> <Esc>
+noremap  <Left> ""
+noremap! <Left> <Esc>
+noremap  <Right> ""
+noremap! <Right> <Esc>
+
 " Section: configuration
 
   scriptencoding utf-8
