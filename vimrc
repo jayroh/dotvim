@@ -2,6 +2,7 @@ runtime! autoload/pathogen.vim
 silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
 
+set t_Co=256
 
 " noremap  <Up> ""
 " noremap! <Up> <Esc>
