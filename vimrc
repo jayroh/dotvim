@@ -66,6 +66,7 @@ noremap! <Right> <Esc>
   " enable line numbers 
   set number
   setlocal numberwidth=5
+  nnoremap <F3> :set nonumber!<CR>
 
   " Enable tab complete for commands.
   " first tab shows all matches. next tab starts cycling through the matches
