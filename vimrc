@@ -2,7 +2,6 @@ runtime! autoload/pathogen.vim
 silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
 
-set guifont=Monaco:h11
 
 " noremap  <Up> ""
 " noremap! <Up> <Esc>
@@ -13,12 +12,10 @@ set guifont=Monaco:h11
 " noremap  <Right> ""
 " noremap! <Right> <Esc>
 
-" remap tab in insert mode to autocomplete
-imap <Tab> <C-P>
-
 " Section: configuration
 
   let g:Powerline_symbols = 'fancy'
+
 
   nnoremap // :TComment<CR>
   vnoremap // :TComment<CR>
@@ -168,19 +165,6 @@ imap <Tab> <C-P>
         \   exe "normal g`\"" |
         \ endi
 
-  " Turn on language specific omnifuncs
-  autocmd FileType ruby set omnifunc=rubycomplete#Complete
-  autocmd FileType python set omnifunc=pythoncomplete#Complete
-  autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType html.erb set omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType radius set omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-  autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-  autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-  autocmd FileType c set omnifunc=ccomplete#Complete
-
-
   " have some fun with bufexplorer
   let g:bufExplorerDefaultHelp=0       " Do not show default help.
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
@@ -210,6 +194,10 @@ imap <Tab> <C-P>
   " insert hashrocket, =>, with control-l
   imap <C-l> <Space>=><Space>
 
+  " remap tab in insert mode to autocomplete
+  imap <Tab> <C-p>
+
+
   " <leader>F to begin searching with ack
   map <leader>F :Ack<space>
 
@@ -232,4 +220,4 @@ imap <Tab> <C-P>
 
   map <C-c>n :cnext<CR>
   map <C-c>p :cprevious<CR>
-
+"
