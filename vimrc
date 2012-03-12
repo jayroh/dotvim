@@ -15,14 +15,20 @@ noremap! <Right> <Esc>
 
 " Section: configuration
 
+  nnoremap // :TComment<CR>
+  vnoremap // :TComment<CR>
+
+  set pastetoggle=<f5>
+
+  set colorcolumn=80
+
   scriptencoding utf-8
 
   " I like pretty colors
-  "  set background=dark
   colorscheme vividchalk
 
   " These two enable syntax highlighting
-  set nocompatible          " We're running Vim, not Vi!
+  set nocompatible          " We're running Vim, not Vi
   syntax on                 " Enable syntax highlighting
 
   " Enable filetype-specific indenting and plugins
@@ -67,7 +73,7 @@ noremap! <Right> <Esc>
   set complete-=i
 
   " Display extra whitespace
-  "set list listchars=tab:»·,trail:·
+  set list listchars=tab:»·,trail:·
 
   " don't make it look like there are line breaks where there aren't:
   "set nowrap
@@ -169,6 +175,7 @@ noremap! <Right> <Esc>
   autocmd FileType ruby set omnifunc=rubycomplete#Complete
   autocmd FileType python set omnifunc=pythoncomplete#Complete
   autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType html.erb set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType radius set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -181,58 +188,22 @@ noremap! <Right> <Esc>
   let g:bufExplorerDefaultHelp=0       " Do not show default help.
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
 
-" IRB {{{
-  autocmd FileType irb inoremap <buffer> <silent> <CR> <Esc>:<C-u>ruby v=VIM::Buffer.current;v.append(v.line_number, eval(v[v.line_number]).inspect)<CR>
-
-" Section: functions
-
-  function! s:RunShellCommand(cmdline)
-    botright new
-
-    setlocal buftype=nofile
-    setlocal bufhidden=delete
-    setlocal nobuflisted
-    setlocal noswapfile
-    setlocal nowrap
-    setlocal filetype=shell
-    setlocal syntax=shell
-
-    call setline(1,a:cmdline)
-    call setline(2,substitute(a:cmdline,'.','=','g'))
-    execute 'silent $read !'.escape(a:cmdline,'%#')
-    setlocal nomodifiable
-    1
-  endfunction
-
-  " Open the Rails ApiDock page for the word under cursor, using the 'open'
-  " command
-  function! OpenRailsDoc(keyword)
-    let url = 'http://apidock.com/rails/'.a:keyword
-    exec '!'.g:browser.' '.url
-  endfunction
-
-  " Open the Ruby ApiDock page for the word under cursor, using the 'open'
-  " command
-  function! OpenRubyDoc(keyword)
-    let url = 'http://apidock.com/ruby/'.a:keyword
-    exec '!'.g:browser.' '.url
-  endfunction
-
-" Section: commands
-
-  " Shell
-  command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
-
-  " Ruby code metrics
-  command! -complete=file -nargs=+ Reek :Shell reek <q-args>
-  command! -complete=file -nargs=+ Roodi :Shell roodi <q-args>
-  command! -complete=file -nargs=+ Flog :Shell flog -m -I lib <q-args> 2>/dev/null
-
 " Section: mappings
 
+
+  " Tabularize
+  if exists(":Tabularize")
+    nmap <leader>a\| :Tab /\|<CR>
+    vmap <leader>a\| :Tab /\|<CR>
+    nmap <leader>a= :Tab /=<CR>
+    vmap <leader>a= :Tab /=<CR>
+    nmap <leader>a: :Tab /:\zs<CR>
+    vmap <leader>a: :Tab /:\zs<CR>
+  endif
+
   " Tab navigation
-  nmap <leader>tn :tabnext<CR>
-  nmap <leader>tp :tabprevious<CR>
+  nmap <leader>tl :tabnext<CR>
+  nmap <leader>th :tabprevious<CR>
   nmap <leader>te :tabedit
 
   " Remap F1 from Help to ESC.  No more accidents.
@@ -241,15 +212,6 @@ noremap! <Right> <Esc>
 
   " insert hashrocket, =>, with control-l
   imap <C-l> <Space>=><Space>
-
-  " align hashrockets with <leader>t control-l
-  vmap <leader>t<C-l> :Align =><CR>
-
-  " TextMate fuzzy finder with <leader>t
-  map <silent> <leader>t :FuzzyFinderTextMate<CR>
-
-  " FuzzyFinder tags with <leader>T
-  nnoremap <silent> <leader>T :FuzzyFinderTag!<CR>
 
   " <leader>F to begin searching with ack
   map <leader>F :Ack<space>
@@ -271,20 +233,5 @@ noremap! <Right> <Esc>
 
   nnoremap <leader>irb :<C-u>below new<CR>:setfiletype irb<CR>:set syntax=ruby<CR>:set buftype=nofile<CR>:set bufhidden=delete<CR>i
 
-  " Easily lookup documentation on apidock
-  noremap <leader>rb :call OpenRubyDoc(expand('<cword>'))<CR>
-  noremap <leader>rr :call OpenRailsDoc(expand('<cword>'))<CR>
-
   map <C-c>n :cnext<CR>
   map <C-c>p :cprevious<CR>
-
-  function! RspecToMocha()
-    silent! %s/\.stub!\?(/.stubs(/
-    silent! %s/and_return/returns/
-    silent! %s/should_receive/expects/
-    silent! %s/should_not_receive\((.*)\)/expects\1.never
-    silent! %s/and_raise/raises/
-    :w
-  endfunction
-  command! RspecToMocha call RspecToMocha()
-  
