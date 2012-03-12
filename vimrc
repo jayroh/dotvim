@@ -4,14 +4,17 @@ silent! call pathogen#helptags()
 
 set guifont=Monaco:h11
 
-noremap  <Up> ""
-noremap! <Up> <Esc>
-noremap  <Down> ""
-noremap! <Down> <Esc>
-noremap  <Left> ""
-noremap! <Left> <Esc>
-noremap  <Right> ""
-noremap! <Right> <Esc>
+" noremap  <Up> ""
+" noremap! <Up> <Esc>
+" noremap  <Down> ""
+" noremap! <Down> <Esc>
+" noremap  <Left> ""
+" noremap! <Left> <Esc>
+" noremap  <Right> ""
+" noremap! <Right> <Esc>
+
+" remap tab in insert mode to autocomplete
+imap <Tab> <C-P>
 
 " Section: configuration
 
@@ -70,6 +73,7 @@ noremap! <Right> <Esc>
 
   " Enable tab complete for commands.
   " first tab shows all matches. next tab starts cycling through the matches
+  " Maps autocomplete to tab
   set wildmenu
   set wildmode=list:longest,list:full
   set complete=.,w,t
@@ -228,3 +232,4 @@ noremap! <Right> <Esc>
 
   map <C-c>n :cnext<CR>
   map <C-c>p :cprevious<CR>
+
