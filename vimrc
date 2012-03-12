@@ -71,7 +71,8 @@ noremap! <Right> <Esc>
   " Enable tab complete for commands.
   " first tab shows all matches. next tab starts cycling through the matches
   set wildmenu
-  set wildmode=list:longest,full
+  set wildmode=list:longest,list:full
+  set complete=.,w,t
 
   " don't complete from included files, on account of slow
   set complete-=i
