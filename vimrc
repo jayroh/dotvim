@@ -15,12 +15,15 @@ noremap! <Right> <Esc>
 
 " Section: configuration
 
+  let g:Powerline_symbols = 'fancy'
+
   nnoremap // :TComment<CR>
   vnoremap // :TComment<CR>
 
   set pastetoggle=<f5>
 
   set colorcolumn=80
+  set encoding=utf-8
 
   scriptencoding utf-8
 
