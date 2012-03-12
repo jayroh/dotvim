@@ -60,3 +60,6 @@
 [submodule "bundle/vim-tcomment"]
 	path = bundle/vim-tcomment
 	url = git://github.com/tomtom/tcomment_vim.git
+[submodule "bundle/vim-powerline"]
+	path = bundle/vim-powerline
+	url = git://github.com/Lokaltog/vim-powerline.git
