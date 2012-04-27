@@ -3,6 +3,10 @@ silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
 
 set t_Co=256
+set splitbelow
+set splitright
+
+source $HOME/.vim/functions.vim
 
 " noremap  <Up> ""
 " noremap! <Up> <Esc>
@@ -149,11 +153,11 @@ set t_Co=256
     au BufRead,BufNewFile *.ru set ft=ruby
     au BufRead,BufNewFile Gemfile set ft=ruby
     autocmd BufEnter *.haml setlocal cursorcolumn
-    au BufRead,BufNewFile Gemfile set ft=ruby                                   
-    au BufRead,BufNewFile Capfile set ft=ruby                                   
-    au BufRead,BufNewFile Thorfile set ft=ruby                                   
-    au BufRead,BufNewFile *.god set ft=ruby  
-    au BufRead,BufNewFile .caprc set ft=ruby  
+    au BufRead,BufNewFile Gemfile set ft=ruby
+    au BufRead,BufNewFile Capfile set ft=ruby
+    au BufRead,BufNewFile Thorfile set ft=ruby
+    au BufRead,BufNewFile *.god set ft=ruby
+    au BufRead,BufNewFile .caprc set ft=ruby
     au BufRead,BufNewFile *.scss set filetype=scss
   augroup END
 
