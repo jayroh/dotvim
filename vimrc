@@ -6,17 +6,6 @@ set t_Co=256
 set splitbelow
 set splitright
 
-source $HOME/.vim/functions.vim
-
-" noremap  <Up> ""
-" noremap! <Up> <Esc>
-" noremap  <Down> ""
-" noremap! <Down> <Esc>
-" noremap  <Left> ""
-" noremap! <Left> <Esc>
-" noremap  <Right> ""
-" noremap! <Right> <Esc>
-
 " Section: configuration
 
   let g:Powerline_symbols = 'fancy'
@@ -118,7 +107,7 @@ source $HOME/.vim/functions.vim
   set foldenable
   " set foldmethod=syntax
   " set foldlevel=999 " make it really high, so they're not displayed by default
-  
+
   set tags=./tags;
 
   " Turn off rails bits of statusbar
@@ -139,43 +128,11 @@ source $HOME/.vim/functions.vim
 
   let g:browser = 'open '
 
-  augroup myfiletypes
-    " Clear old autocmds in group
-    autocmd!
-    " autoindent with two spaces, always expand tabs
-    autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
-    autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 expandtab
-    autocmd FileType php,javascript,html,htmldjango,css,radius set autoindent shiftwidth=2 softtabstop=2 expandtab
-    autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-    autocmd FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-    au BufRead,BufNewFile *etc/nginx/* set ft=nginx 
-    " treat rackup files like ruby
-    au BufRead,BufNewFile *.ru set ft=ruby
-    au BufRead,BufNewFile Gemfile set ft=ruby
-    autocmd BufEnter *.haml setlocal cursorcolumn
-    au BufRead,BufNewFile Gemfile set ft=ruby
-    au BufRead,BufNewFile Capfile set ft=ruby
-    au BufRead,BufNewFile Thorfile set ft=ruby
-    au BufRead,BufNewFile *.god set ft=ruby
-    au BufRead,BufNewFile .caprc set ft=ruby
-    au BufRead,BufNewFile *.scss set filetype=scss
-  augroup END
-
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal g`\"" |
-        \ endi
-
   " have some fun with bufexplorer
   let g:bufExplorerDefaultHelp=0       " Do not show default help.
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
 
 " Section: mappings
-
 
   " Tabularize
   if exists(":Tabularize")
@@ -226,3 +183,6 @@ source $HOME/.vim/functions.vim
   map <C-c>n :cnext<CR>
   map <C-c>p :cprevious<CR>
 "
+
+source $HOME/.vim/autocmd.vim
+source $HOME/.vim/functions.vim

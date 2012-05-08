@@ -1,7 +1,7 @@
 " Custom, non-autocommand functions
 
-nnoremap <Leader>a :call RunCurrentTest()<CR>
-nnoremap <Leader>l :call RunCurrentLineInTest()<CR>
+nnoremap <leader>a :call RunCurrentTest()<CR>
+nnoremap <leader>l :call RunCurrentLineInTest()<CR>
 
 function! CorrectTestRunner()
   if match(expand('%'), '_spec\.rb$') != -1
