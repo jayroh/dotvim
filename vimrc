@@ -134,6 +134,11 @@ set splitright
 
 " Section: mappings
 
+  if exists(":CoffeeMake")
+    nmap <leader>cc :silent CoffeeMake<CR>
+    nmap <leader>cv :CoffeeCompile watch vert<CR>
+  endif
+
   " Tabularize
   if exists(":Tabularize")
     nmap <leader>a\| :Tab /\|<CR>

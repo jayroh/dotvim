@@ -9,10 +9,11 @@ if has("autocmd")
     au FileType php,javascript,html,htmldjango,css,radius set autoindent shiftwidth=2 softtabstop=2 expandtab
     au FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     au FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-    au BufRead,BufNewFile *etc/nginx/* set ft=nginx 
+    au BufEnter *.haml setlocal cursorcolumn
+    au BufRead,BufNewFile *.html.erb set ft=html.eruby
+    au BufRead,BufNewFile *etc/nginx/* set ft=nginx
     au BufRead,BufNewFile *.ru set ft=ruby
     au BufRead,BufNewFile Gemfile set ft=ruby
-    au BufEnter *.haml setlocal cursorcolumn
     au BufRead,BufNewFile Gemfile set ft=ruby
     au BufRead,BufNewFile Capfile set ft=ruby
     au BufRead,BufNewFile Thorfile set ft=ruby
