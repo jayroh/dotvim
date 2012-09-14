@@ -14,8 +14,7 @@ set splitright
   nnoremap // :TComment<CR>
   vnoremap // :TComment<CR>
 
-  set pastetoggle=<f5>
-
+  set pastetoggle=<F6>
   set colorcolumn=80
   set encoding=utf-8
 
@@ -60,7 +59,7 @@ set splitright
   " enable line numbers 
   set number
   setlocal numberwidth=5
-  nnoremap <F3> :set nonumber!<CR>
+  nnoremap <F5> :set nonumber!<CR>
 
   " Enable tab complete for commands.
   " first tab shows all matches. next tab starts cycling through the matches
@@ -188,6 +187,31 @@ set splitright
   map <C-c>n :cnext<CR>
   map <C-c>p :cprevious<CR>
 "
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" OPEN FILES IN DIRECTORY OF CURRENT FILE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>gr :topleft :split config/routes.rb<cr>
+map <leader>gR :call ShowRoutes()<cr>
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets/sass<cr>
+map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
+map <leader>gg :topleft 100 :split Gemfile<cr>
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
+
 
 source $HOME/.vim/autocmd.vim
 source $HOME/.vim/functions.vim
