@@ -5,6 +5,7 @@ silent! call pathogen#helptags()
 set t_Co=256
 set splitbelow
 set splitright
+set shell=/bin/zsh\ -i
 
 " Section: configuration
 
