@@ -13,6 +13,7 @@ if has("autocmd")
     au BufRead,BufNewFile *.html.erb set ft=html.eruby
     au BufRead,BufNewFile *etc/nginx/* set ft=nginx
     au BufRead,BufNewFile *.ru set ft=ruby
+    au BufRead,BufNewFile *.rabl setf ruby
     au BufRead,BufNewFile Gemfile set ft=ruby
     au BufRead,BufNewFile Gemfile set ft=ruby
     au BufRead,BufNewFile Capfile set ft=ruby
