@@ -78,3 +78,6 @@
 [submodule "bundle/vim-rvm"]
 	path = bundle/vim-rvm
 	url = git://github.com/tpope/vim-rvm.git
+[submodule "bundle/sweet-rspec-vim"]
+	path = bundle/sweet-rspec-vim
+	url = git://github.com/duskhacker/sweet-rspec-vim.git
