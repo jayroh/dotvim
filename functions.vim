@@ -1,5 +1,3 @@
-" Custom, non-autocommand functions
-
 map <leader>S :!./bin/rspec % --format documentation<CR>
 
 function! ShowRoutes()
@@ -18,3 +16,14 @@ function! ShowRoutes()
   " Delete empty trailing line
   :normal dd
 endfunction
+
+" from http://vim.wikia.com/wiki/Remove_unwanted_spaces
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+:endfunction
+
+" expand existing tabs
+function TabToSpaces()
+    retab
+:endfunction

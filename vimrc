@@ -5,7 +5,11 @@ silent! call pathogen#helptags()
 set t_Co=256
 set splitbelow
 set splitright
-set shell=/bin/zsh\ -i
+set shell=/bin/zsh
+set winwidth=84
+set winheight=5
+set winminheight=5
+set winheight=999
 
 " Section: configuration
 
@@ -57,7 +61,7 @@ set shell=/bin/zsh\ -i
   " When scrolling off-screen do so 3 lines at a time, not 1
   set scrolloff=3
 
-  " enable line numbers 
+  " enable line numbers
   set number
   setlocal numberwidth=5
   nnoremap <F5> :set nonumber!<CR>
@@ -214,6 +218,8 @@ map <leader>gg :topleft 100 :split Gemfile<cr>
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
+map <leader>w :call TrimWhiteSpace()<cr>
+map! <leader>w :call TrimWhiteSpace()<cr>
 
 source $HOME/.vim/autocmd.vim
 source $HOME/.vim/functions.vim
