@@ -77,3 +77,6 @@
 [submodule "bundle/sweet-rspec-vim"]
 	path = bundle/sweet-rspec-vim
 	url = git://github.com/duskhacker/sweet-rspec-vim.git
+[submodule "bundle/easybuffer.vim"]
+	path = bundle/easybuffer.vim
+	url = git://github.com/troydm/easybuffer.vim.git
