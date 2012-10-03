@@ -221,5 +221,10 @@ map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 map <leader>w :call TrimWhiteSpace()<cr>
 map! <leader>w :call TrimWhiteSpace()<cr>
 
+" map <leader>bv :EasyBufferVerticalRight<cr>
+" map <leader>bs :EasyBufferHorizontalBelow<cr>
+" map <leader>be :EasyBuffer<cr>
+
+
 source $HOME/.vim/autocmd.vim
 source $HOME/.vim/functions.vim
