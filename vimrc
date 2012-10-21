@@ -19,6 +19,8 @@ set winheight=999
   nnoremap // :TComment<CR>
   vnoremap // :TComment<CR>
 
+  nnoremap <leader>sv :source $MYVIMRC<CR>
+
   set pastetoggle=<F6>
   set colorcolumn=80
   set encoding=utf-8
