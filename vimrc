@@ -28,7 +28,7 @@ set winheight=999
   scriptencoding utf-8
 
   " I like pretty colors
-  colorscheme vividchalk
+  colorscheme grb256
 
   " These two enable syntax highlighting
   set nocompatible          " We're running Vim, not Vi
@@ -227,6 +227,11 @@ map <leader>bv :EasyBufferVerticalRight<cr>
 map <leader>bs :EasyBufferHorizontalBelow<cr>
 map <leader>be :EasyBuffer<cr>
 
-
 source $HOME/.vim/autocmd.vim
 source $HOME/.vim/functions.vim
+
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+endif
+
+nmap K :grep "\b<C-R><C-W>\b"<CR>:copen<CR>

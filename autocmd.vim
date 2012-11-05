@@ -21,6 +21,7 @@ if has("autocmd")
     au BufRead,BufNewFile *.god set ft=ruby
     au BufRead,BufNewFile .caprc set ft=ruby
     au BufRead,BufNewFile *.scss set filetype=scss
+    au BufRead,BufNewFile *.less set filetype=less
     au BufRead,BufNewFile *.coffee set foldmethod=indent nofoldenable
     au BufRead,BufNewFile *.coffee set autoindent shiftwidth=2 softtabstop=2 expandtab
     au BufEnter *.scss setlocal cursorcolumn

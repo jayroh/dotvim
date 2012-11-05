@@ -80,3 +80,6 @@
 [submodule "bundle/easybuffer.vim"]
 	path = bundle/easybuffer.vim
 	url = git://github.com/troydm/easybuffer.vim.git
+[submodule "bundle/vim-extradite"]
+	path = bundle/vim-extradite
+	url = git://github.com/int3/vim-extradite.git
