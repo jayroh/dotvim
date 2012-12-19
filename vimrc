@@ -235,3 +235,6 @@ if executable("ag")
 endif
 
 nmap K :grep "\b<C-R><C-W>\b"<CR>:copen<CR>
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
