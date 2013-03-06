@@ -26,7 +26,8 @@ function TabToSpaces()
     retab
 :endfunction
 
-map <leader>9 :!hash_syntax --to-19 %
+" map <leader>9 :!hash_syntax --to-19 %
+nmap <leader>9 :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
 
 " rspec mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
