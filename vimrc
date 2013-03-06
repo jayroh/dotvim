@@ -40,9 +40,11 @@ set title
 set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
 setlocal numberwidth=5
 syntax on
+colorscheme grb256
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
-" Declare bundles are handled via Vundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -52,6 +54,7 @@ Bundle 'gmarik/vundle'
 " Define bundles via Github repos
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'airblade/vim-rooter'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'cstrahan/grb256'
 Bundle 'duff/vim-scratch'
 Bundle 'godlygeek/tabular'
@@ -91,7 +94,6 @@ vnoremap // :TComment<CR>
 nnoremap <F5> :set nonumber!<CR>
 
 scriptencoding utf-8
-colorscheme grb256
 filetype plugin indent on
 
 " Load matchit (% to bounce from do to end, etc.)
@@ -102,8 +104,6 @@ set tags=./tags;
 " Turn off rails bits of statusbar
 let g:rails_statusline=0
 let g:browser = 'open '
-
-" Section: mappings
 
 if exists(":CoffeeMake")
   nmap <leader>cc :silent CoffeeMake<CR>
@@ -182,6 +182,13 @@ map! <leader>w :call TrimWhiteSpace()<cr>
 map <leader>bv :EasyBufferVerticalRight<cr>
 map <leader>bs :EasyBufferHorizontalBelow<cr>
 map <leader>be :EasyBuffer<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Git Gutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight clear signcolumn
+let g:gitgutter_enabled = 0
+nmap <leader>gu :GitGutterToggle<CR>
 
 source $HOME/.vim/autocmd.vim
 source $HOME/.vim/functions.vim
