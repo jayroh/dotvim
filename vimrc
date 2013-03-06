@@ -1,199 +1,155 @@
-runtime! autoload/pathogen.vim
-silent! call pathogen#runtime_append_all_bundles()
-silent! call pathogen#helptags()
-
+set backspace=indent,eol,start
 set t_Co=256
 set splitbelow
 set splitright
 set shell=/bin/zsh
+set directory=/tmp/
 set winwidth=84
-set winheight=5
+set winheight=20
 set winminheight=5
 set winheight=999
+set nocompatible
+set incsearch
+set hlsearch
+set cursorline
+set showmatch
+set smarttab
+set scrolloff=3
+set pastetoggle=<F6>
+set colorcolumn=80
+set encoding=utf-8
+set number
+set wildmenu
+set wildmode=list:longest,list:full
+set complete=.,w,t
+set complete-=i
+set list listchars=tab:»·,trail:·
+set gdefault
+set foldenable
+" Nice statusbar
+set laststatus=2
+set statusline=\ "
+set statusline+=%f\ " file name
+set statusline+=[
+set statusline+=%{strlen(&ft)?&ft:'none'}, " filetype
+set statusline+=%{&fileformat}] " file format
+set statusline+=%h%1*%m%r%w%0* " flag
+set statusline+=%= " right align
+set statusline+=%-14.(%l,%c%V%)\ %<%P " offset
+set title
+set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
+setlocal numberwidth=5
+syntax on
 
-" Section: configuration
+" Vundle
+" Declare bundles are handled via Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-  let g:Powerline_symbols = 'fancy'
+" Let Vundle manage Vundle
+Bundle 'gmarik/vundle'
 
+" Define bundles via Github repos
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'airblade/vim-rooter'
+Bundle 'cstrahan/grb256'
+Bundle 'duff/vim-scratch'
+Bundle 'godlygeek/tabular'
+Bundle 'int3/vim-extradite'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'msanders/snipmate.vim'
+Bundle 'sickill/vim-pasta'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-ragtag'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rvm'
+Bundle 'tpope/vim-surround'
+Bundle 'troydm/easybuffer.vim'
+Bundle 'vim-scripts/ctags.vim'
+Bundle 'vim-scripts/greplace.vim'
+Bundle 'vim-scripts/tComment'
+Bundle 'xenoterracide/html.vim'
 
-  nnoremap // :TComment<CR>
-  vnoremap // :TComment<CR>
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+endif
 
-  nnoremap <leader>sv :source $MYVIMRC<CR>
+nmap K :grep "\b<C-R><C-W>\b"<CR>:copen<CR>
 
-  set pastetoggle=<F6>
-  set colorcolumn=80
-  set encoding=utf-8
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
 
-  scriptencoding utf-8
+let mapleader = ","
+let g:Powerline_symbols = 'fancy'
 
-  " I like pretty colors
-  colorscheme grb256
+nmap <leader>sv :source $MYVIMRC<CR>
+nnoremap // :TComment<CR>
+vnoremap // :TComment<CR>
+nnoremap <F5> :set nonumber!<CR>
 
-  " These two enable syntax highlighting
-  set nocompatible          " We're running Vim, not Vi
-  syntax on                 " Enable syntax highlighting
+scriptencoding utf-8
+colorscheme grb256
+filetype plugin indent on
 
-  " Enable filetype-specific indenting and plugins
-  filetype plugin indent on
+" Load matchit (% to bounce from do to end, etc.)
+runtime! macros/matchit.vim
 
-  " show the `best match so far' as search strings are typed
-  set incsearch
+set tags=./tags;
 
-  " Highlight search results once found:
-  set hlsearch
-
-  " highlight the current line the cursor is on
-  set cursorline
-  " highlight the current column the cursor is on
-  "set cursorcolumn
-
-  "sm:    flashes matching brackets or parentheses
-  set showmatch
-
-  "sta:   helps with backspacing because of expandtab
-  set smarttab
-
-  " Change <Leader>
-  let mapleader = ","
-
-  " Set temporary directory (don't litter local dir with swp/tmp files)
-  set directory=/tmp/
-
-  " When scrolling off-screen do so 3 lines at a time, not 1
-  set scrolloff=3
-
-  " enable line numbers
-  set number
-  setlocal numberwidth=5
-  nnoremap <F5> :set nonumber!<CR>
-
-  " Enable tab complete for commands.
-  " first tab shows all matches. next tab starts cycling through the matches
-  " Maps autocomplete to tab
-  set wildmenu
-  set wildmode=list:longest,list:full
-  set complete=.,w,t
-
-  " don't complete from included files, on account of slow
-  set complete-=i
-
-  " Display extra whitespace
-  set list listchars=tab:»·,trail:·
-
-  " don't make it look like there are line breaks where there aren't:
-  "set nowrap
-
-  " assume the /g flag on :s substitutions to replace all matches in a line:
-  set gdefault
-
-  " Load matchit (% to bounce from do to end, etc.)
-  runtime! macros/matchit.vim
-
-  " Nice statusbar
-  set laststatus=2
-  set statusline=\ "
-  set statusline+=%f\ " file name
-  set statusline+=[
-  set statusline+=%{strlen(&ft)?&ft:'none'}, " filetype
-  set statusline+=%{&fileformat}] " file format
-  set statusline+=%h%1*%m%r%w%0* " flag
-  set statusline+=%= " right align
-  set statusline+=%-14.(%l,%c%V%)\ %<%P " offset
-
-  " enable setting title
-  set title
-  " configure title to look like: Vim /path/to/file
-  set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
-
-  " Make backspace work in insert mode
-  set backspace=indent,eol,start
-
-  " can has foldin plz?
-  set foldenable
-  " set foldmethod=syntax
-  " set foldlevel=999 " make it really high, so they're not displayed by default
-
-  set tags=./tags;
-
-  " Turn off rails bits of statusbar
-  let g:rails_statusline=0
-
-  " quit NERDTree after openning a file
-  let NERDTreeQuitOnOpen = 0
-  " colored NERD Tree
-  let NERDChristmasTree = 1
-  let NERDTreeHighlightCursorline = 1
-  let NERDTreeShowHidden = 1
-  " map enter to activating a node
-  let NERDTreeMapActivateNode='<CR>'
-  let NERDTreeIgnore=['\.git','\.DS_Store','\.sass\-cache','\.pdf','\.bundle']
-  map <F2> :NERDTreeToggle<CR>
-  " Toggle NERDTree with <leader>d
-  map <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
-
-  let g:browser = 'open '
-
-  " have some fun with bufexplorer
-  let g:bufExplorerDefaultHelp=0       " Do not show default help.
-  let g:bufExplorerShowRelativePath=1  " Show relative paths.
+" Turn off rails bits of statusbar
+let g:rails_statusline=0
+let g:browser = 'open '
 
 " Section: mappings
 
-  if exists(":CoffeeMake")
-    nmap <leader>cc :silent CoffeeMake<CR>
-    nmap <leader>cv :CoffeeCompile watch vert<CR>
-  endif
+if exists(":CoffeeMake")
+  nmap <leader>cc :silent CoffeeMake<CR>
+  nmap <leader>cv :CoffeeCompile watch vert<CR>
+endif
 
-  " Tabularize
-  if exists(":Tabularize")
-    nmap <leader>a\| :Tab /\|<CR>
-    vmap <leader>a\| :Tab /\|<CR>
-    nmap <leader>a= :Tab /=<CR>
-    vmap <leader>a= :Tab /=<CR>
-    nmap <leader>a: :Tab /:\zs<CR>
-    vmap <leader>a: :Tab /:\zs<CR>
-  endif
+" Tabularize
+if exists(":Tabularize")
+  nmap <leader>a\| :Tab /\|<CR>
+  vmap <leader>a\| :Tab /\|<CR>
+  nmap <leader>a= :Tab /=<CR>
+  vmap <leader>a= :Tab /=<CR>
+  nmap <leader>a: :Tab /:\zs<CR>
+  vmap <leader>a: :Tab /:\zs<CR>
+endif
 
-  " Tab navigation
-  nmap <leader>tl :tabnext<CR>
-  nmap <leader>th :tabprevious<CR>
-  nmap <leader>te :tabedit
+" Tab navigation
+nmap <leader>tl :tabnext<CR>
+nmap <leader>th :tabprevious<CR>
+nmap <leader>te :tabedit
 
-  " Remap F1 from Help to ESC.  No more accidents.
-  nmap <F1> <Esc>
-  map! <F1> <Esc>
+" Remap F1 from Help to ESC.  No more accidents.
+nmap <F1> <Esc>
+map! <F1> <Esc>
 
-  " insert hashrocket, =>, with control-l
-  imap <C-l> <Space>=><Space>
+" remap tab in insert mode to autocomplete
+imap <Tab> <C-p>
 
-  " remap tab in insert mode to autocomplete
-  imap <Tab> <C-p>
+" search next/previous -- center in page
+nmap n nzz
+nmap N Nzz
+nmap * *Nzz
+nmap # #nzz
 
+" Yank from the cursor to the end of the line, to be consistent with C and D.
+nnoremap Y y$
 
-  " <leader>F to begin searching with ack
-  map <leader>F :Ack<space>
+" Hide search highlighting
+map <silent> <leader>nh :nohls <CR>
 
-  " search next/previous -- center in page
-  nmap n nzz
-  nmap N Nzz
-  nmap * *Nzz
-  nmap # #nzz
+" IRB
+autocmd FileType irb inoremap <buffer> <silent> <CR> <Esc>:<C-u>ruby v=VIM::Buffer.current;v.append(v.line_number, eval(v[v.line_number]).inspect)<CR>
+nnoremap <leader>irb :<C-u>below new<CR>:setfiletype irb<CR>:set syntax=ruby<CR>:set buftype=nofile<CR>:set bufhidden=delete<CR>i
 
-  " Yank from the cursor to the end of the line, to be consistent with C and D.
-  nnoremap Y y$
-
-  " Hide search highlighting
-  map <silent> <leader>nh :nohls <CR>
-
-  " toggle Quickfix window with <leader>q
-  map <silent> <leader>q :QFix<CR>
-
-  nnoremap <leader>irb :<C-u>below new<CR>:setfiletype irb<CR>:set syntax=ruby<CR>:set buftype=nofile<CR>:set bufhidden=delete<CR>i
-
-  map <C-c>n :cnext<CR>
-  map <C-c>p :cprevious<CR>
-"
+map <C-c>n :cnext<CR>
+map <C-c>p :cprevious<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
@@ -229,12 +185,3 @@ map <leader>be :EasyBuffer<cr>
 
 source $HOME/.vim/autocmd.vim
 source $HOME/.vim/functions.vim
-
-if executable("ag")
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
-endif
-
-nmap K :grep "\b<C-R><C-W>\b"<CR>:copen<CR>
-
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>

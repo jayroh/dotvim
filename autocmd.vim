@@ -1,6 +1,5 @@
 if has("autocmd")
   augroup myfiletypes
-    " Clear old autocmds in group
     autocmd!
 
     " autoindent with two spaces, always expand tabs
