@@ -57,7 +57,6 @@ Bundle 'airblade/vim-rooter'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'cstrahan/grb256'
 Bundle 'duff/vim-scratch'
-Bundle 'godlygeek/tabular'
 Bundle 'int3/vim-extradite'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'msanders/snipmate.vim'
@@ -81,9 +80,6 @@ if executable("ag")
 endif
 
 nmap K :grep "\b<C-R><C-W>\b"<CR>:copen<CR>
-
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
 
 let mapleader = ","
 let g:Powerline_symbols = 'fancy'
@@ -110,16 +106,6 @@ if exists(":CoffeeMake")
   nmap <leader>cv :CoffeeCompile watch vert<CR>
 endif
 
-" Tabularize
-if exists(":Tabularize")
-  nmap <leader>a\| :Tab /\|<CR>
-  vmap <leader>a\| :Tab /\|<CR>
-  nmap <leader>a= :Tab /=<CR>
-  vmap <leader>a= :Tab /=<CR>
-  nmap <leader>a: :Tab /:\zs<CR>
-  vmap <leader>a: :Tab /:\zs<CR>
-endif
-
 " Tab navigation
 nmap <leader>tl :tabnext<CR>
 nmap <leader>th :tabprevious<CR>
@@ -128,9 +114,6 @@ nmap <leader>te :tabedit
 " Remap F1 from Help to ESC.  No more accidents.
 nmap <F1> <Esc>
 map! <F1> <Esc>
-
-" remap tab in insert mode to autocomplete
-imap <Tab> <C-p>
 
 " search next/previous -- center in page
 nmap n nzz
@@ -189,6 +172,9 @@ map <leader>be :EasyBuffer<cr>
 highlight clear signcolumn
 let g:gitgutter_enabled = 0
 nmap <leader>gu :GitGutterToggle<CR>
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
 
 source $HOME/.vim/autocmd.vim
 source $HOME/.vim/functions.vim
