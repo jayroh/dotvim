@@ -6,7 +6,7 @@ set shell=/bin/zsh
 set directory=/tmp/
 set winwidth=84
 set winheight=20
-set winminheight=5
+set winminheight=20
 set winheight=999
 set nocompatible
 set incsearch
