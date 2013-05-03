@@ -48,10 +48,14 @@ colorscheme grb256
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+source $HOME/.vim/autocmd.vim
+
 " Let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
 " Define bundles via Github repos
+Bundle 'thoughtbot/vim-rspec'
+Bundle 'regedarek/ZoomWin.git'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'airblade/vim-rooter'
 Bundle 'airblade/vim-gitgutter'
@@ -84,6 +88,7 @@ nmap K :grep "\b<C-R><C-W>\b"<CR>:copen<CR>
 let mapleader = ","
 let g:Powerline_symbols = 'fancy'
 
+nmap <leader>z :ZoomWin<CR>
 nmap <leader>sv :source $MYVIMRC<CR>
 nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
@@ -105,6 +110,12 @@ if exists(":CoffeeMake")
   nmap <leader>cc :silent CoffeeMake<CR>
   nmap <leader>cv :CoffeeCompile watch vert<CR>
 endif
+
+" Quickly change quotes
+vnoremap <leader>c' :s/"/'/<CR>
+vnoremap <leader>c" :s/'/"/<CR>
+nmap "" cs'"
+nmap '' cs"'
 
 " Tab navigation
 nmap <leader>tl :tabnext<CR>
@@ -176,5 +187,4 @@ nmap <leader>gu :GitGutterToggle<CR>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-source $HOME/.vim/autocmd.vim
 source $HOME/.vim/functions.vim

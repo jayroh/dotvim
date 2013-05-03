@@ -36,40 +36,32 @@ endif
 nmap <leader>9 :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
 
 " rspec mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
+let g:rspec_command = "!rspec --no-color {spec}"
+map <leader>t :call RunCurrentSpecFile()<CR>
+map <leader>s :call RunNearestSpec()<CR>
+map <leader>l :call RunLastSpec()<CR>
 
-function! RunCurrentSpecFile()
-  if InSpecFile()
-    let l:command = "zeus rspec " . @% . " -f documentation --no-color"
-    call SetLastSpecCommand(l:command)
-    call RunSpecs(l:command)
+" rails migrations
+map <leader>rm :call Migrate()<CR>
+map <leader>rrm :call Remigrate()<CR>
+
+function! Remigrate()
+  if InEngine()
+    execute ":!rake db:drop db:create db:migrate && RAILS_ENV=test rake db:drop db:create db:migrate"
+  else
+    execute ":!rake db:drop db:create db:migrate db:test:prepare"
   endif
 endfunction
 
-function! RunNearestSpec()
-  if InSpecFile()
-    let l:command = "zeus rspec " . @% . " -l " . line(".") . " -f documentation --no-color"
-    call SetLastSpecCommand(l:command)
-    call RunSpecs(l:command)
+function! Migrate()
+  if InEngine()
+    execute ":!rake db:migrate && RAILS_ENV=test rake db:migrate"
+  else
+    execute ":!rake db:migrate db:test:prepare"
   endif
 endfunction
 
-function! RunLastSpec()
-  if exists("t:last_spec_command")
-    call RunSpecs(t:last_spec_command)
-  endif
-endfunction
-
-function! InSpecFile()
-  return match(expand("%"), "_spec.rb$") != -1
-endfunction
-
-function! SetLastSpecCommand(command)
-  let t:last_spec_command = a:command
-endfunction
-
-function! RunSpecs(command)
-  execute ":w\|!" . a:command
+function! InEngine()
+  let g:gemspec = glob("`find . -name \*.gemspec`")
+  return g:gemspec != ""
 endfunction
