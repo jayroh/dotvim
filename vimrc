@@ -88,6 +88,7 @@ nmap K :grep "\b<C-R><C-W>\b"<CR>:copen<CR>
 let mapleader = ","
 let g:Powerline_symbols = 'fancy'
 
+nmap <leader>ct :!ctags -R --exclude=.git --exclude=log * $(rvm gemdir)<CR>
 nmap <leader>z :ZoomWin<CR>
 nmap <leader>sv :source $MYVIMRC<CR>
 nnoremap // :TComment<CR>
@@ -120,7 +121,17 @@ nmap '' cs"'
 " Tab navigation
 nmap <leader>tl :tabnext<CR>
 nmap <leader>th :tabprevious<CR>
-nmap <leader>te :tabedit
+nmap <leader>te :tabedit<CR>:e 
+nmap <leader>1 1gt
+nmap <leader>2 2gt
+nmap <leader>3 3gt
+nmap <leader>4 4gt
+nmap <leader>5 5gt
+nmap <leader>6 6gt
+nmap <leader>7 7gt
+nmap <leader>8 8gt
+nmap <leader>9 9gt
+nmap <leader>0 10gt
 
 " Remap F1 from Help to ESC.  No more accidents.
 nmap <F1> <Esc>

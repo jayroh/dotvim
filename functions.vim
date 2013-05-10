@@ -35,8 +35,13 @@ endif
 " map <leader>9 :!hash_syntax --to-19 %
 nmap <leader>9 :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
 
-" rspec mappings
-let g:rspec_command = "!rspec --no-color {spec}"
+" Rspec
+if findfile("zeus.json", ".;") != ""
+  let g:rspec_command = "!zeus test --no-color {spec}"
+else
+  let g:rspec_command = "!rspec --no-color {spec}"
+endif
+
 map <leader>t :call RunCurrentSpecFile()<CR>
 map <leader>s :call RunNearestSpec()<CR>
 map <leader>l :call RunLastSpec()<CR>
