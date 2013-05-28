@@ -1,4 +1,4 @@
-if !exists("*ShowRoutes")
+ if !exists("*ShowRoutes")
   function! ShowRoutes()
     " Requires 'scratch' plugin
     :topleft 100 :split __Routes__
@@ -36,12 +36,17 @@ endif
 nmap <leader>9 :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
 
 " Rspec
-if findfile("zeus.json", ".;") != ""
-  let g:rspec_command = "!zeus test --no-color {spec}"
-else
-  let g:rspec_command = "!rspec --no-color {spec}"
-endif
+function! GuessRspecCommand()
+  let g:haszeus = glob("`find . -name .zeus.sock`")
 
+  if g:haszeus != ""
+    return "!zeus test --no-color {spec}"
+  else
+    return "!rspec --no-color {spec}"
+  endif
+endfunction
+
+let g:rspec_command = GuessRspecCommand()
 map <leader>t :call RunCurrentSpecFile()<CR>
 map <leader>s :call RunNearestSpec()<CR>
 map <leader>l :call RunLastSpec()<CR>
