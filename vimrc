@@ -78,6 +78,10 @@ Bundle 'vim-scripts/ctags.vim'
 Bundle 'vim-scripts/greplace.vim'
 Bundle 'vim-scripts/tComment'
 Bundle 'xenoterracide/html.vim'
+Bundle 'takac/vim-commandcaps'
+Bundle 'rking/ag.vim'
+Bundle 'jgdavey/tslime.vim'
+
 
 if executable("ag")
   set grepprg=ag\ --nogroup\ --nocolor\ --column
@@ -160,8 +164,8 @@ map <C-c>p :cprevious<CR>
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>e :edit %%
-map <leader>v :view %%
+map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>v :v <C-R>=expand("%:p:h") . "/" <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
@@ -197,5 +201,11 @@ nmap <leader>gu :GitGutterToggle<CR>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
+
+" Bundle! Gemfile!
+nnoremap <leader>bun :!bundle<CR>
+nnoremap <leader>gem :tabe Gemfile<CR>
+nnoremap <leader>db :tabe db/schema.rb<CR>
+nnoremap <leader>route :tabe config/routes.rb<CR>
 
 source $HOME/.vim/functions.vim

@@ -39,10 +39,10 @@ nmap <leader>9 :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
 function! GuessRspecCommand()
   let g:haszeus = glob("`find . -name .zeus.sock`")
 
-  if g:haszeus != ""
-    return "!zeus test --no-color {spec}"
+  if g:haszeus != ''
+    return 'call Send_to_Tmux("zeus test {spec}\n")'
   else
-    return "!rspec --no-color {spec}"
+    return 'call Send_to_Tmux("rspec {spec}\n")'
   endif
 endfunction
 
